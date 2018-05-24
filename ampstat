@@ -1,0 +1,27 @@
+#!/usr/bin/python
+# Open the file with read only permit
+f = open('amps.dat')
+# use readline() to read the first line 
+line = f.readline()
+min = float(line)
+max = float(line)
+# use the read line to read further.
+# If the file is not empty keep reading one line
+# at a time, till the file is empty
+while line:
+    test = float(line)
+    if  test > max: max = test
+    if  test < min: min = test
+    # in python 2+
+    # print line
+    # in python 3 print is a builtin function, so
+    # use realine() to read next line
+    line = f.readline()
+
+f.close()
+file = open("ampminmax.dat","w")
+file.write(str(min) + "\n")
+file.write(str(max) + "\n")
+file.close()
+
+

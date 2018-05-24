@@ -1,0 +1,15 @@
+#!/bin/bash
+cd /home/pi/solarmonitor
+tail -n 1440 voltage.dat > voltage.dat.tmp
+tail -n 1440 amps.dat > amps.dat.tmp
+mv voltage.dat.tmp voltage.dat
+mv amps.dat.tmp amps.dat
+./readvolt
+sleep 1
+./readamp
+sleep 1
+./ampstat
+./voltstat
+gnuplot makeplot
+date +%T > /var/www/html/sm/date.dat
+
